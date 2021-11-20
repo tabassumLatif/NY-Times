@@ -27,7 +27,7 @@ class ArticlesViewModel @ViewModelInject constructor(
                 val response = repository.getArticles(lastPageId)
                 showLoader.postValue(false)
                 if (response.data != null) {
-                    articles.postValue(response.data?.articles)
+                    articles.postValue(response.data.articles)
                     lastPageId++
                 }
             }

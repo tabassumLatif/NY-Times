@@ -15,7 +15,7 @@ class ArticleAdapter @Inject constructor(
 
     private lateinit var onItemClickListener : ((Article) -> Unit)
     private lateinit var loadMoreListener : (() -> Unit)
-    private val LOAD_MORE_THRESHOLD = 5
+    private val loadMoreThreshold = 5
 
     inner class ArticleViewHolder(private val binding: RowArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -55,7 +55,7 @@ class ArticleAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.onBind(position)
-        if(position+LOAD_MORE_THRESHOLD == itemCount){
+        if(position+loadMoreThreshold == itemCount){
             loadMoreListener.invoke()
         }
     }

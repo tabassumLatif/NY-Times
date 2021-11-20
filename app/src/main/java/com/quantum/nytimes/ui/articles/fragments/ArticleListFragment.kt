@@ -41,12 +41,16 @@ class ArticleListFragment @Inject constructor(private val articleAdapter: Articl
     private fun addItemClickListener() {
         articleAdapter.setOnItemClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("article", it) // Serializable Object
+            bundle.putSerializable(KEY_ARTICLE, it) // Serializable Object
             val a = ArticleListFragmentDirections.actionArticleListFragmentToArticleDetailFragment()
             findNavController().navigate(
                 a.actionId, bundle
             )
         }
+    }
+
+    companion object{
+        const val KEY_ARTICLE = "article"
     }
 
 

@@ -10,10 +10,9 @@ import javax.inject.Inject
 class ArticleDetailFragment @Inject constructor() :
     Fragment(R.layout.fragment_article_detail) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(arguments?.getSerializable("article") != null){
+        if(arguments?.getSerializable(ArticleListFragment.KEY_ARTICLE) != null){
             Log.d("tabi", "onViewCreated: date receive")
         }
     }

@@ -6,7 +6,7 @@ import com.quantum.nytimes.utils.Resource
 import java.lang.Exception
 import javax.inject.Inject
 
-class NyTimeRepository @Inject constructor(val retrofitAPI: RetrofitAPI): NyTimeRepositoryInterface {
+class NyTimeRepository @Inject constructor(private val retrofitAPI: RetrofitAPI): NyTimeRepositoryInterface {
     override suspend fun getArticles(pageId: Int): Resource<ArticleResponse> {
         return try {
             val response = retrofitAPI.getArticles("$pageId.json")

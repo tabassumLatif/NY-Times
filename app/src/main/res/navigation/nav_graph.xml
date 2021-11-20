@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/articleListFragment">
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.quantum.nytimes.ui.articles.fragments.ArticleListFragment"
+        android:label="ArticleListFragment">
+        <action
+            android:id="@+id/action_articleListFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+        <argument
+            android:name="article"
+            android:defaultValue="@null"
+            app:argType="com.quantum.nytimes.model.Article"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.quantum.nytimes.ui.articles.fragments.ArticleDetailFragment"
+        android:label="ArticleDetailFragment">
+        <action
+            android:id="@+id/action_articleDetailFragment_to_articleListFragment"
+            app:destination="@id/articleListFragment" />
+    </fragment>
+</navigation>

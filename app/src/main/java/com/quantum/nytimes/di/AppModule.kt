@@ -11,6 +11,9 @@ import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -18,8 +21,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun injectRetrofitAPI() : RetrofitAPI {
+    fun injectRetrofitAPI(): RetrofitAPI {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
         return Retrofit.Builder()
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL).build().create(RetrofitAPI::class.java)
     }

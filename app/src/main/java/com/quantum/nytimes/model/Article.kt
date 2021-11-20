@@ -1,6 +1,7 @@
 package com.quantum.nytimes.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Article(
     val uri: String,
@@ -21,4 +22,5 @@ data class Article(
     val type: String,
     val title: String,
     val abstract: String,
-)
+    val media: ArrayList<Media>
+): Serializable

@@ -5,8 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class ArticleResponse(
     val status: String,
     val copyright: String,
-    @SerializedName("numResults")
-    val num_results: Int,
+    @SerializedName("num_Results")
+    val numResults: Int,
+    @SerializedName("results")
     val articles: List<Article>
 
 )

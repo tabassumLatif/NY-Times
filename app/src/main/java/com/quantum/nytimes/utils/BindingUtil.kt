@@ -21,6 +21,19 @@ object BindingUtil {
     }
 
     @JvmStatic
+    @BindingAdapter("loadCircleImage")
+    fun loadCircleImage(imageView: ImageView, url : String?){
+        if(!url.isNullOrEmpty()){
+            Glide.with(imageView.context)
+                .load(url)
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .transform(CircleCrop())
+                .into(imageView)
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter("loadImage")
     fun loadImage(imageView: ImageView, url : String?){
         if(!url.isNullOrEmpty()){
@@ -28,7 +41,6 @@ object BindingUtil {
                 .load(url)
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
-                .transform(CircleCrop())
                 .into(imageView)
         }
     }

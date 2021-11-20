@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/ivArticle"
-            loadImage="@{viewModel.thumb}"
+            loadCircleImage="@{viewModel.thumb}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"

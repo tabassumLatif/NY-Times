@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.quantum.nytimes.ui.viewModel.ArticlesViewModel" />
+            type="com.quantum.nytimes.ui.articles.viewModel.ArticlesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -8,14 +8,14 @@ import androidx.navigation.fragment.findNavController
 import com.quantum.nytimes.R
 import com.quantum.nytimes.databinding.FragmentArticleListBinding
 import com.quantum.nytimes.ui.articles.adapter.ArticleAdapter
-import com.quantum.nytimes.ui.viewModel.ArticlesViewModel
+import com.quantum.nytimes.ui.articles.viewModel.ArticlesViewModel
 import javax.inject.Inject
 
 
 class ArticleListFragment @Inject constructor(private val articleAdapter: ArticleAdapter) :
     Fragment(R.layout.fragment_article_list) {
 
-    var binding: FragmentArticleListBinding? = null
+    private var binding: FragmentArticleListBinding? = null
     lateinit var viewModel: ArticlesViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

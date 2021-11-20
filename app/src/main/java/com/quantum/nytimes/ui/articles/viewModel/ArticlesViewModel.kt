@@ -1,4 +1,4 @@
-package com.quantum.nytimes.ui.viewModel
+package com.quantum.nytimes.ui.articles.viewModel
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData

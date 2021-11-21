@@ -2,14 +2,13 @@ package com.quantum.nytimes.ui.articles.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.quantum.nytimes.R
 import com.quantum.nytimes.databinding.FragmentArticleDetailBinding
-import com.quantum.nytimes.databinding.FragmentArticleListBinding
 import com.quantum.nytimes.model.Article
 import com.quantum.nytimes.ui.articles.viewModel.ArticleDetailViewModel
-import com.quantum.nytimes.ui.articles.viewModel.ArticlesViewModel
 import javax.inject.Inject
 
 class ArticleDetailFragment @Inject constructor() :
@@ -29,5 +28,11 @@ class ArticleDetailFragment @Inject constructor() :
             it.lifecycleOwner = this
             it.viewModel = viewModel
         }
+        changeTitle()
+    }
+
+
+    private fun changeTitle(){
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title = "Article Detail"
     }
 }

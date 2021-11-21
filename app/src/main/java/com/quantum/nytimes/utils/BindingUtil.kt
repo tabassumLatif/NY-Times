@@ -16,7 +16,7 @@ object BindingUtil {
     fun setAdapter(recyclerView: RecyclerView, articles:List<Article>?){
         if(recyclerView.adapter != null && articles != null){
             val adapter = recyclerView.adapter as ArticleAdapter
-            adapter.articles = articles
+            adapter.addArticles(articles)
         }
     }
 

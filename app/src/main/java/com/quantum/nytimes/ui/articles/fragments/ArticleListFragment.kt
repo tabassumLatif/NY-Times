@@ -12,6 +12,7 @@ import com.quantum.nytimes.ui.articles.viewModel.ArticlesViewModel
 import javax.inject.Inject
 
 import androidx.appcompat.app.AppCompatActivity
+import com.quantum.nytimes.utils.NetworkUtil
 
 
 class ArticleListFragment @Inject constructor(private val articleAdapter: ArticleAdapter) :
@@ -32,12 +33,21 @@ class ArticleListFragment @Inject constructor(private val articleAdapter: Articl
         }
         addItemClickListener()
         addLoadMoreListener()
-        viewModel.fetchArticle()
+        fetchArticles()
+    }
+
+    private fun fetchArticles() {
+        if (NetworkUtil.isNetworkAvailable(requireContext())) {
+            viewModel.fetchArticle()
+            return
+        } else if (articleAdapter.itemCount == 0) {
+            viewModel.isInternetConnected.value = false
+        }
     }
 
     private fun addLoadMoreListener() {
         articleAdapter.setLoadMoreListener {
-            viewModel.fetchArticle()
+            fetchArticles()
         }
     }
 
@@ -45,18 +55,19 @@ class ArticleListFragment @Inject constructor(private val articleAdapter: Articl
         articleAdapter.setOnItemClickListener {
             val bundle = Bundle()
             bundle.putSerializable(KEY_ARTICLE, it)
-            val action = ArticleListFragmentDirections.actionArticleListFragmentToArticleDetailFragment()
+            val action =
+                ArticleListFragmentDirections.actionArticleListFragmentToArticleDetailFragment()
             findNavController().navigate(
                 action.actionId, bundle
             )
         }
     }
 
-    private fun changeTitle(){
+    private fun changeTitle() {
         (requireActivity() as AppCompatActivity?)?.supportActionBar?.title = "Articles"
     }
 
-    companion object{
+    companion object {
         const val KEY_ARTICLE = "article"
     }
 

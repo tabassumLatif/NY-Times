@@ -2,6 +2,8 @@ package com.quantum.nytimes.ui.articles.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.quantum.nytimes.databinding.RowArticleBinding
 import com.quantum.nytimes.model.Article
@@ -28,13 +30,22 @@ class ArticleAdapter @Inject constructor(
         }
     }
 
-    var articles = ArrayList<Article>()
+    private val diffUtil = object : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    fun addArticles(articles: List<Article>){
-        val lastSize = this.articles.size
-        this.articles.addAll(articles)
-        notifyItemRangeChanged(lastSize, this.articles.size)
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem.id == newItem.id
+        }
+
     }
+
+    private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
+    var articles : List<Article>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val rowArticleBinding: RowArticleBinding =

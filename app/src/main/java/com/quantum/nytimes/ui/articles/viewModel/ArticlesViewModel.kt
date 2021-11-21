@@ -17,6 +17,7 @@ class ArticlesViewModel @ViewModelInject constructor(
     private val articlesResponse = MutableLiveData<Resource<ArticleResponse>>()
     val articles = MutableLiveData<List<Article>>()
     val showLoader = MutableLiveData(false)
+    val isInternetConnected = MutableLiveData(true)
     private var lastPageId = 1
 
     fun fetchArticle() {

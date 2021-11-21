@@ -13,17 +13,17 @@ object BindingUtil {
 
     @JvmStatic
     @BindingAdapter("articleAdapter")
-    fun setAdapter(recyclerView: RecyclerView, articles:List<Article>?){
-        if(recyclerView.adapter != null && articles != null){
+    fun setAdapter(recyclerView: RecyclerView, articles: List<Article>?) {
+        if (recyclerView.adapter != null && articles != null) {
             val adapter = recyclerView.adapter as ArticleAdapter
-            adapter.addArticles(articles)
+            adapter.articles = articles
         }
     }
 
     @JvmStatic
     @BindingAdapter("loadCircleImage")
-    fun loadCircleImage(imageView: ImageView, url : String?){
-        if(!url.isNullOrEmpty()){
+    fun loadCircleImage(imageView: ImageView, url: String?) {
+        if (!url.isNullOrEmpty()) {
             Glide.with(imageView.context)
                 .load(url)
                 .placeholder(R.drawable.ic_launcher_background)
@@ -35,8 +35,8 @@ object BindingUtil {
 
     @JvmStatic
     @BindingAdapter("loadImage")
-    fun loadImage(imageView: ImageView, url : String?){
-        if(!url.isNullOrEmpty()){
+    fun loadImage(imageView: ImageView, url: String?) {
+        if (!url.isNullOrEmpty()) {
             Glide.with(imageView.context)
                 .load(url)
                 .placeholder(R.drawable.ic_launcher_background)

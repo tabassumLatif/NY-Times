@@ -21,6 +21,5 @@ class ArticleDetailViewModel @ViewModelInject constructor() : ViewModel() {
         source.value = "By the ${article.source}"
         publishDate.value =
             "Publish on " + article.published_date + "\t  Updated on " + article.updated
-
     }
 }
